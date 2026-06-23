@@ -3,14 +3,12 @@ import pandas as pd
 import numpy as np
 import joblib
 
-# 1. Page Configuration
 st.set_page_config(
     page_title="Credit Card Fraud Detection System",
     page_icon="💳",
     layout="wide"
 )
 
-# 2. Load the Trained Model and Scaler
 @st.cache_resource 
 def load_artifacts():
     model = joblib.load('fraud_model.pkl')
@@ -22,12 +20,10 @@ try:
 except Exception as e:
     st.error(f"⚠️ Error loading model files. Make sure 'fraud_model.pkl' and 'scaler.joblib' are in the same folder. Error: {e}")
 
-# 3. Sidebar / Header UI
 st.title("💳 AI-Powered Credit Card Fraud Detection")
 st.markdown("This system uses a **Random Forest Classifier** trained with **SMOTE** to detect fraudulent credit card transactions in real-time.")
-st.divider() # <--- Yahan st.hr() ko st.divider() se change kiya hai
+st.divider() 
 
-# 4. Input Form Layout
 st.subheader("🕵️‍♂️ Enter Transaction Details")
 
 col1, col2, col3 = st.columns(3)
@@ -68,9 +64,8 @@ with col3:
     v27 = st.number_input("V27 Component:", value=0.0)
     v28 = st.number_input("V28 Component:", value=0.0)
 
-st.divider() # <--- Yahan bhi change kar diya hai
+st.divider() 
 
-# 5. Prediction Logic
 if st.button("🔍 Analyze Transaction", type="primary"):
     input_data = np.array([[time, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, 
                             v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, 
